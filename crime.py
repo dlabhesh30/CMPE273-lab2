@@ -10,7 +10,7 @@ from spyne import srpc
 import json
 
 
-class HelloWorldService(ServiceBase):
+class CrimeApi(ServiceBase):
     @srpc(Unicode, Unicode,Unicode, _returns=Iterable(Unicode))
     def say_hello(lat,lon,radius):
             url="https://api.spotcrime.com/crimes.json?lat=%s&lon=%s&radius=%s&key=." %(lat,lon,radius)
@@ -120,7 +120,7 @@ class HelloWorldService(ServiceBase):
 
 
 
-application = Application([HelloWorldService],
+application = Application([CrimeApi],
     tns='spyne.examples.hello',
     in_protocol=HttpRpc(validator='soft'),
     out_protocol=JsonDocument()
