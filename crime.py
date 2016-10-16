@@ -95,6 +95,22 @@ class HelloWorldService(ServiceBase):
                         addr["street"][a] += 1
                     else:
                         addr["street"][a] = 1
+                elif "BLOCK BLOCK" in i["address"]:
+                    a, st = i["address"].split("BLOCK BLOCK", 1)
+                    if st in addr["street"]:
+                        addr["street"][st] += 1
+                    else:
+                        addr["street"][st] = 1
+                elif "AND" in i["address"]:
+                    a, st = i["address"].split("AND", 1)
+                    if st in addr["street"] :
+                        addr["street"][st] += 1
+                    else:
+                        addr["street"][st] = 1
+                    if a in addr["street"]:
+                        addr["street"][a] += 1
+                    else:
+                        addr["street"][a] = 1
             danList=sorted(addr["street"],key=addr["street"].get,reverse=True)
             crime["the_most_dangerous_streets"].append(danList[0])
             crime["the_most_dangerous_streets"].append(danList[1])
